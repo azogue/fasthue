@@ -8,6 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.7"
 homeassistant = "^0.108.5"
+pre-commit = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 
