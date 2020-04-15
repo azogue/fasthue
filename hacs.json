@@ -1,0 +1,10 @@
+{
+  "name": "Fast-Hue polling",
+  "content_in_root": false,
+  "domains": [
+    "sensor"
+  ],
+  "homeassistant": "0.108.0",
+  "iot_class": "Local Polling",
+  "render_readme": true
+}
