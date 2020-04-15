@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "fasthue"
+version = "0.1.0"
+description = "HomeAssistant integration to customize Hue polling for sensors and remotes"
+authors = ["Eugenio Panadero <eugenio.panadero@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+homeassistant = "^0.108.5"
+
+[tool.poetry.dev-dependencies]
+
+[tool.black]
+line_length = 79
+target_version = ["py37"]
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"
