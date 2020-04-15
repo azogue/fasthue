@@ -1,0 +1,18 @@
+{
+  "config": {
+    "title": "Fast-Hue customizer",
+    "description": "Hue fast-polling customizer for sensors and remotes.\nSet, monitor and modify the current refresh interval for each Hue bridge.",
+    "step": {
+      "user": {
+        "title": "Custom refresh interval",
+        "data": {
+          "name": "Name for poll interval monitor sensor",
+          "scan_interval": "Poll interval"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Integration is already configured"
+    }
+  }
+}

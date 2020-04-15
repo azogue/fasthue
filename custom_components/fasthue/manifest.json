@@ -1,0 +1,13 @@
+{
+    "domain": "fasthue",
+    "name": "Hue fast polling custom integration",
+    "config_flow": true,
+    "documentation": "https://github.com/azogue/fasthue",
+    "requirements": [],
+    "dependencies": [
+        "hue"
+    ],
+    "codeowners": [
+        "@azogue"
+    ]
+}

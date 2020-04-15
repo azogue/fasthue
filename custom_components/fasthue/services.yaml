@@ -1,0 +1,9 @@
+set_update_interval:
+  description: Sets the polling interval of the Hue bridge.
+  fields:
+    entity_id:
+      description: Name(s) of polling interval sensor entities to set
+      example: "sensor.hue_polling_interval"
+    scan_interval:
+      description: Scan interval as period
+      example: "0:00:02"
