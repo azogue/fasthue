@@ -2,36 +2,22 @@
 import logging
 from datetime import timedelta
 
-import voluptuous as vol
-
 from homeassistant.components.hue.bridge import HueBridge
 from homeassistant.components.hue.const import DOMAIN as HUE_DOMAIN
 from homeassistant.components.hue.sensor_base import SensorManager
 from homeassistant.const import CONF_NAME, CONF_SCAN_INTERVAL, TIME_SECONDS
 from homeassistant.core import callback
-from homeassistant.helpers import (
-    config_validation as cv,
-    device_registry as dr,
-    entity_platform,
-)
+from homeassistant.helpers import device_registry as dr, entity_platform
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .const import (
     DEFAULT_ICON,
     DEFAULT_SENSOR_NAME,
     SERVICE_SET_UPDATE_INTERVAL,
+    SET_UPDATE_INTERVAL_SERVICE_SCHEMA,
 )
 
 _LOGGER = logging.getLogger(__name__)
-
-SET_UPDATE_INTERVAL_SERVICE_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_SCAN_INTERVAL): vol.All(
-            cv.time_period, cv.positive_timedelta
-        ),
-    },
-    extra=vol.ALLOW_EXTRA,
-)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -50,6 +36,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     device_registry: dr.DeviceRegistry = await dr.async_get_registry(hass)
     new_entities = []
     for i, (b_entry_id, bridge) in enumerate(hass.data[HUE_DOMAIN].items()):
+        # Extract hue hub device to link the sensor with it
         device = next(
             filter(
                 lambda dev: dev.via_device_id is None,
@@ -68,7 +55,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 class HuePollingInterval(RestoreEntity):
-    """Class to hold the update_interval of each hue bridge as a sensor."""
+    """
+    Class to hold the update_interval of each hue bridge as a sensor,
+    and to modify it with a entity service call.
+
+    ** This CC, this entity object, is nothing more than a _hack_ into the
+     data update coordinator update interval :) **
+    """
 
     unit_of_measurement = TIME_SECONDS
     icon = DEFAULT_ICON
