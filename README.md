@@ -24,20 +24,39 @@ Until added to the default list in [HACS](https://hacs.xyz/), it can be added as
 
 Add it from the Integrations menu, set the desired new update interval, and you're good to go.
 
-If there are more than 1 hue bridges, all of them will get the same update interval. Created sensors live under the Hue bridge device, as they are linked to the hub.
+If there are more than 1 hue bridge, all of them will get the same update interval. Created sensors live under the Hue bridge device, as they are linked to each hub.
 
 Once configured, the new `fasthue.set_update_interval` service is available to use with each bridge (:= sensor entity),
 so different refresh intervals can be set for different bridges, and they can be changed anytime.
 
-```yaml
-  action:
-  - service: fasthue.set_update_interval
-    entity_id: sensor.hue_polling_interval
-    data:
-      scan_interval:
-        seconds: 2
-```
-
 When the integration is removed, the sensor entities are deleted, the service dissapears,
 and the update interval is set again to 5 seconds, like nothing happened,
 so you can try it with no danger :)
+
+### Automation example
+
+A slider (:= `input_number`) to dynamically change the refresh rate on a hue bridge:
+
+```yaml
+input_number:
+  hue_polling_interval:
+    name: "Hue polling rate"
+    min: 1
+    max: 20
+    step: 1
+    icon: "mdi:update"
+
+automation:
+- alias: set_hue_polling_interval
+  trigger:
+    platform: state
+    entity_id: input_number.hue_polling_interval
+  action:
+  - service: fasthue.set_update_interval
+    entity_id: sensor.hue_polling_interval
+    data_template:
+      scan_interval:
+        seconds: '{{states("input_number.hue_polling_interval") | int}}'
+```
+
+The `scan_interval` field could also be expressed as a _timedelta string_, like `scan_interval: "00:00:{{states('input_number.hue_polling_interval') | int }}"`.

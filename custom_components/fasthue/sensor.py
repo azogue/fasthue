@@ -7,12 +7,7 @@ import voluptuous as vol
 from homeassistant.components.hue.bridge import HueBridge
 from homeassistant.components.hue.const import DOMAIN as HUE_DOMAIN
 from homeassistant.components.hue.sensor_base import SensorManager
-from homeassistant.const import (
-    CONF_ENTITY_ID,
-    CONF_NAME,
-    CONF_SCAN_INTERVAL,
-    TIME_SECONDS,
-)
+from homeassistant.const import CONF_NAME, CONF_SCAN_INTERVAL, TIME_SECONDS
 from homeassistant.core import callback
 from homeassistant.helpers import (
     config_validation as cv,
@@ -29,25 +24,30 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
+SET_UPDATE_INTERVAL_SERVICE_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_SCAN_INTERVAL): vol.All(
+            cv.time_period, cv.positive_timedelta
+        ),
+    },
+    extra=vol.ALLOW_EXTRA,
+)
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     """Set up the component sensors from a config entry."""
-    name = config_entry.data.get(CONF_NAME, DEFAULT_SENSOR_NAME)
-    scan_interval = max(1, config_entry.data.get(CONF_SCAN_INTERVAL))
-    device_registry: dr.DeviceRegistry = await dr.async_get_registry(hass)
-
-    # Register service to change the update interval
+    # Register service to change the update interval on specific bridges
     platform = entity_platform.current_platform.get()
     platform.async_register_entity_service(
         SERVICE_SET_UPDATE_INTERVAL,
-        {
-            vol.Required(CONF_ENTITY_ID): cv.entity_id,
-            vol.Required(CONF_SCAN_INTERVAL): cv.time_period,
-        },
-        SERVICE_SET_UPDATE_INTERVAL,
+        SET_UPDATE_INTERVAL_SERVICE_SCHEMA,
+        "async_set_update_interval",
     )
 
-    # Add one entity for each hue bridge
+    # Add one sensor entity for each hue bridge and link it to the hub device
+    base_name = config_entry.data.get(CONF_NAME, DEFAULT_SENSOR_NAME)
+    initial_scan_interval = max(1, config_entry.data.get(CONF_SCAN_INTERVAL))
+    device_registry: dr.DeviceRegistry = await dr.async_get_registry(hass)
     new_entities = []
     for i, (b_entry_id, bridge) in enumerate(hass.data[HUE_DOMAIN].items()):
         device = next(
@@ -58,10 +58,10 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         )
         new_entities.append(
             HuePollingInterval(
-                name if i == 0 else f"{name}_{i + 1}",
+                f"{base_name}_{i + 1}" if i else base_name,
                 device,
                 bridge.sensor_manager,
-                scan_interval,
+                initial_scan_interval,
             )
         )
     async_add_entities(new_entities, False)
@@ -102,7 +102,7 @@ class HuePollingInterval(RestoreEntity):
         self._coordinator.update_interval = self._custom_scan
         self.async_write_ha_state()
 
-    async def set_update_interval(self, scan_interval):
+    async def async_set_update_interval(self, scan_interval):
         """Service call to change the update interval of the hue bridge."""
         self._set_new_update_interval(max(timedelta(seconds=1), scan_interval))
 
