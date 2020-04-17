@@ -86,14 +86,15 @@ class HuePollingInterval(RestoreEntity):
 
     def _set_new_update_interval(self, scan_interval: timedelta):
         self._custom_scan = scan_interval
-        _LOGGER.warning(
-            "%s: Modifying the scan_interval from %s to %s",
-            self.entity_id,
-            self._coordinator.update_interval,
-            self._custom_scan,
-        )
-        self._coordinator.update_interval = self._custom_scan
         self.async_write_ha_state()
+        if self._coordinator.update_interval != self._custom_scan:
+            _LOGGER.warning(
+                "%s: Modifying the scan_interval from %s to %s",
+                self.entity_id,
+                self._coordinator.update_interval,
+                self._custom_scan,
+            )
+            self._coordinator.update_interval = self._custom_scan
 
     async def async_set_update_interval(self, scan_interval):
         """Service call to change the update interval of the hue bridge."""

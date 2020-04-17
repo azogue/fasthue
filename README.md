@@ -1,10 +1,12 @@
+![Validate with hassfest](https://github.com/azogue/fasthue/workflows/Validate%20with%20hassfest/badge.svg?branch=master)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 <br><a href="https://www.buymeacoffee.com/azogue" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" width="150px" height="35px" alt="Buy Me A Coffee" style="height: 35px !important;width: 150px !important;" ></a>
 
 # Fast-Hue customizer
 
-Custom integration to modify the fixed update interval (5s) of the main `hue` integration.
+Custom integration to **modify the fixed update interval (5s)** of the main `hue` integration.
 
 It is configured only by UI, and creates a sensor entity for each Hue bridge, showing the current polling interval.
 It also register a new service **`fasthue.set_update_interval`** to be able to change the update interval dynamically, even from automations or scripts.
