@@ -1,0 +1,18 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Integracja jest już skonfigurowana"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "name": "Nazwa bazowa dla interwału odpytywania sensorów",
+                    "scan_interval": "Początkowy interwał aktualizacji"
+                },
+                "description": "Zmodyfikuj zachowanie integracji Hue dla sensorów i pilotów.\n\n* Ustaw niestandardową częstotliwość odświeżania i ją monitoruj dla każdego mostka Hue.\n* Zmodyfikuj ją dynamicznie, wywołując usługę `fasthue.set_scan_interval` na każdym mostku Hue.",
+                "title": "Fast-Hue customizer"
+            }
+        },
+        "title": "Fast-Hue customizer"
+    }
+}
