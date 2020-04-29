@@ -23,10 +23,6 @@ CONFIG_SCHEMA = vol.Schema(
 )
 
 SET_UPDATE_INTERVAL_SERVICE_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_SCAN_INTERVAL): vol.All(
-            cv.time_period, cv.positive_timedelta
-        ),
-    },
+    {vol.Required(CONF_SCAN_INTERVAL): vol.All(cv.time_period, cv.positive_timedelta)},
     extra=vol.ALLOW_EXTRA,
 )

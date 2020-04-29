@@ -10,6 +10,7 @@ from homeassistant.core import callback
 from homeassistant.helpers import device_registry as dr, entity_platform
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+
 from .const import (
     DEFAULT_ICON,
     DEFAULT_SENSOR_NAME,
