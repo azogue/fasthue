@@ -10,6 +10,7 @@ from homeassistant.core import callback
 from homeassistant.helpers import device_registry as dr, entity_platform
 from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+
 from .const import (
     DEFAULT_ICON,
     DEFAULT_SENSOR_NAME,
@@ -56,8 +57,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 class HuePollingInterval(RestoreEntity):
     """
-    Class to hold the update_interval of each hue bridge as a sensor,
-    and to modify it with a entity service call.
+    Class to hold the update_interval of each hue bridge as a sensor.
+
+    Also implementing an entity-service to modify it.
 
     ** This CC, this entity object, is nothing more than a _hack_ into the
      data update coordinator update interval :) **
@@ -119,6 +121,9 @@ class HuePollingInterval(RestoreEntity):
                 self.entity_id,
                 self._custom_scan,
             )
+
+        # set initial state
+        self._set_new_update_interval(self._custom_scan)
 
         # Set up updates at scan_interval
         @callback

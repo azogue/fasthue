@@ -1,5 +1,6 @@
 """Config flow for Fast-Hue customizer."""
 from homeassistant import config_entries
+
 from .const import CONFIG_SCHEMA, DOMAIN, UNIQUE_ID
 
 

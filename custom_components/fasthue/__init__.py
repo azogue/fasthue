@@ -1,6 +1,7 @@
 """Fast-Hue customizer."""
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.helpers.typing import ConfigType, HomeAssistantType
+
 from .const import DOMAIN, PLATFORM, SERVICE_SET_UPDATE_INTERVAL
 
 
@@ -21,6 +22,4 @@ async def async_setup_entry(hass: HomeAssistantType, entry: ConfigEntry):
 async def async_unload_entry(hass: HomeAssistantType, entry: ConfigEntry):
     """Unload a config entry."""
     hass.services.async_remove(DOMAIN, SERVICE_SET_UPDATE_INTERVAL)
-    return await hass.config_entries.async_forward_entry_unload(
-        entry, PLATFORM
-    )
+    return await hass.config_entries.async_forward_entry_unload(entry, PLATFORM)
