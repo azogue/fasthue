@@ -12,7 +12,6 @@
                 "description": "Modify the hue integration behavior for sensors and remotes.\n\n* Set a custom refresh rate and monitor the current polling rate for each Hue bridge.\n* Modify it dynamically by calling the service `fasthue.set_scan_interval` on each Hue bridge.",
                 "title": "Fast-Hue customizer"
             }
-        },
-        "title": "Fast-Hue customizer"
+        }
     }
 }
