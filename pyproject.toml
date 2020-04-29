@@ -13,8 +13,8 @@ pre-commit = "^2.2.0"
 [tool.poetry.dev-dependencies]
 
 [tool.black]
-line_length = 79
-target_version = ["py37"]
+line_length = 88
+target_version = ["py37", "py38"]
 
 [build-system]
 requires = ["poetry>=1.0.0"]
