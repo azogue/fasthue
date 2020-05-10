@@ -1,8 +1,16 @@
 # Changelog
 
-## [v1.1.0](https://github.com/azogue/eventsensor/tree/v1.1.0) (2020-04-28)
+## [v1.1.1](https://github.com/azogue/fasthue/tree/v1.1.0) (2020-05-10)
 
-[Full Changelog](https://github.com/azogue/eventsensor/compare/v1.0.0...v1.1.0)
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.0...v1.1.1)
+
+**Changes:**
+
+- Add Italian (from @sagitt), Polish (from @nepozs) and Spanish translations
+
+## [v1.1.0](https://github.com/azogue/fasthue/tree/v1.1.0) (2020-04-28)
+
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.0.0...v1.1.0)
 
 **Changes:**
 
