@@ -63,3 +63,18 @@ automation:
 ```
 
 The `scan_interval` field could also be expressed as a _timedelta string_, like `scan_interval: "00:00:{{states('input_number.hue_polling_interval') | int }}"`.
+
+## Limitations
+
+The modified `scan_interval` for the Hue bridge with this custom integration has a **lower limit of 1s**,
+and that's _not only_ because at 1Hz the probability of generating errors in the bridge is high,
+but also **because there is no way to do it faster** (if using the HA Core infrastructure to do the polling).
+
+All internal schedulers in HA Core use its _internal clock_,
+which is a periodic `EVENT_TIME_CHANGED`, **fired each second**.
+So there is no point in setting an update interval of something less than 1s,
+because it will be called at 1Hz tops, once for each `time_changed` event.
+
+Also, `float` numbers like 1.5 have no sense for this,
+and that's why the scan_interval is an integer,
+and the minor unit in all 'time' fields along HA Core is the second :)

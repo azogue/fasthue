@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.1.1](https://github.com/azogue/fasthue/tree/v1.1.0) (2020-05-10)
+## [v1.1.1](https://github.com/azogue/fasthue/tree/v1.1.1) (2020-05-10)
 
 [Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.0...v1.1.1)
 
