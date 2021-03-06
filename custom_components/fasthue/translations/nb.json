@@ -1,0 +1,17 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Integrasjon er allerede konfigurert"
+        },
+        "step": {
+            "user": {
+                "data": {
+                    "name": "Basenavn for sensorene for pollingintervallet",
+                    "scan_interval": "Innledende oppdateringsintervall"
+                },
+                "description": "Endre nyanseintegrasjonsatferden for sensorer og fjernkontroller.\n\n* Angi en tilpasset oppdateringsfrekvens og overvåke den nåværende avstemningshastigheten for hver Hue-bro.\n* Endre det dynamisk ved å kalle tjenesten `fasthue.set_scan_interval` på hver Hue-bro.",
+                "title": "Fast-Hue customizer"
+            }
+        }
+    }
+}
