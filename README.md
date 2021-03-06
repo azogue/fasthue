@@ -19,13 +19,13 @@ Place the `custom_components` folder in your configuration directory
 
 ## Installation through HACS
 
-The easiest way to install it.
+The easiest way to install it (using HACS->Integrations menu).
 
 Until added to the default list in [HACS](https://hacs.xyz/), it can be added as a **custom repository** by adding `https://github.com/azogue/fasthue` (with category: Integration).
 
 ## Configuration
 
-Add it from the Integrations menu, set the desired new update interval, and you're good to go.
+After installation through HACS, add it using the Configuration->Integrations menu of Home Assistant, set the desired new update interval, and you're good to go.
 
 If there are more than 1 hue bridge, all of them will get the same update interval. Created sensors live under the Hue bridge device, as they are linked to each hub.
 
