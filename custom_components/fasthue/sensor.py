@@ -5,10 +5,11 @@ from datetime import timedelta
 from homeassistant.components.hue.bridge import HueBridge
 from homeassistant.components.hue.const import DOMAIN as HUE_DOMAIN
 from homeassistant.components.hue.sensor_base import SensorManager
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME, CONF_SCAN_INTERVAL, TIME_SECONDS
 from homeassistant.core import callback
 from homeassistant.helpers import device_registry as dr, entity_platform
-from homeassistant.helpers.restore_state import RestoreEntity
+from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from .const import (
@@ -21,7 +22,7 @@ from .const import (
 _LOGGER = logging.getLogger(__name__)
 
 
-async def async_setup_entry(hass, config_entry, async_add_entities):
+async def async_setup_entry(hass, config_entry: ConfigEntry, async_add_entities):
     """Set up the component sensors from a config entry."""
     # Register service to change the update interval on specific bridges
     platform = entity_platform.current_platform.get()
@@ -55,7 +56,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     async_add_entities(new_entities, False)
 
 
-class HuePollingInterval(RestoreEntity):
+class HuePollingInterval(Entity):
     """
     Class to hold the update_interval of each hue bridge as a sensor.
 
@@ -113,15 +114,6 @@ class HuePollingInterval(RestoreEntity):
     async def async_added_to_hass(self):
         """Handle entity which will be added."""
         await super().async_added_to_hass()
-        state = await self.async_get_last_state()
-        if state:
-            self._custom_scan = timedelta(seconds=int(state.state))
-            _LOGGER.info(
-                "%s: Got update_interval from state restore: %s",
-                self.entity_id,
-                self._custom_scan,
-            )
-
         # set initial state
         self._set_new_update_interval(self._custom_scan)
 
@@ -129,7 +121,9 @@ class HuePollingInterval(RestoreEntity):
         @callback
         def _check_polling():
             """Check update_interval on bridge."""
-            if self._coordinator.update_interval != self._custom_scan:
+            if (self._coordinator.update_interval is not None) and (
+                self._coordinator.update_interval != self._custom_scan
+            ):
                 self._set_new_update_interval(self._custom_scan)
 
         self._listener = self._coordinator.async_add_listener(_check_polling)
