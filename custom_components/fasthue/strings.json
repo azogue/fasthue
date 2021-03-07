@@ -13,5 +13,16 @@
     "abort": {
       "already_configured": "Integration is already configured"
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Fast-Hue - Edit",
+        "description": "Modify the hue integration behavior for sensors and remotes.\n\n* Set a custom refresh rate and monitor the current polling rate for each Hue bridge.",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
   }
 }
