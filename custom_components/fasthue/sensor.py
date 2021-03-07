@@ -109,7 +109,7 @@ class HuePollingInterval(Entity):
             self._listener()
             self._listener = None
         self._set_new_update_interval(self._default_scan)
-        _LOGGER.warning("%s: Removing from HASS", self.entity_id)
+        _LOGGER.info("%s: Removing from HASS", self.entity_id)
 
     async def async_added_to_hass(self):
         """Handle entity which will be added."""

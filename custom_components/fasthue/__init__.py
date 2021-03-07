@@ -41,6 +41,9 @@ async def async_unload_entry(hass: HomeAssistantType, config_entry: ConfigEntry)
 
 async def update_listener(hass: HomeAssistantType, config_entry: ConfigEntry):
     """Handle options update."""
+    if not config_entry.options:
+        return
+
     original_scan_interval = config_entry.data[CONF_SCAN_INTERVAL]
     new_scan_interval = config_entry.options[CONF_SCAN_INTERVAL]
     if original_scan_interval != new_scan_interval:
