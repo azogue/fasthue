@@ -90,7 +90,7 @@ class HuePollingInterval(RestoreEntity):
         self._custom_scan = scan_interval
         self.async_write_ha_state()
         if self._coordinator.update_interval != self._custom_scan:
-            _LOGGER.warning(
+            _LOGGER.info(
                 "%s: Modifying the scan_interval from %s to %s",
                 self.entity_id,
                 self._coordinator.update_interval,
@@ -133,7 +133,7 @@ class HuePollingInterval(RestoreEntity):
                 self._set_new_update_interval(self._custom_scan)
 
         self._listener = self._coordinator.async_add_listener(_check_polling)
-        _LOGGER.warning(
+        _LOGGER.info(
             "%s: Added to HASS with update interval: %s",
             self.entity_id,
             self._custom_scan,

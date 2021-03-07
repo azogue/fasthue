@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.1.2](https://github.com/azogue/fasthue/tree/v1.1.2) (2021-03-07)
+
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.1...v1.1.2)
+
+**Changes:**
+
+- Add Norwegian (from @hwikene), update README (from @huubeikens) and minor changes on HACS integration
+
 ## [v1.1.1](https://github.com/azogue/fasthue/tree/v1.1.1) (2020-05-10)
 
 [Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.0...v1.1.1)
