@@ -29,12 +29,35 @@ After installation through HACS, add it using the Configuration->Integrations me
 
 If there are more than 1 hue bridge, all of them will get the same update interval. Created sensors live under the Hue bridge device, as they are linked to each hub.
 
-Once configured, the new `fasthue.set_update_interval` service is available to use with each bridge (:= sensor entity),
-so different refresh intervals can be set for different bridges, and they can be changed anytime.
-
 When the integration is removed, the sensor entities are deleted, the service dissapears,
 and the update interval is set again to 5 seconds, like nothing happened,
 so you can try it with no danger :)
+
+### Dynamic update interval
+
+With the integration already installed, the update interval can be changed dynamically by 2 methods: using a service call for each bridge, or changing it globally.
+
+#### Set update interval with a service call for each Hue bridge
+
+Once configured, the new `fasthue.set_update_interval` service is available to use with each bridge (:= sensor entity),
+so different refresh intervals can be set for different bridges, and they can be changed anytime.
+
+The YAML data to call this service is:
+
+```yaml
+service: fasthue.set_update_interval
+data:
+  scan_interval: 7
+target:
+  entity_id: sensor.hue_polling_interval
+```
+
+Take into account that the scan interval modification done with this service call won't persist a HA restart. At that moment, the original value will be back.
+
+#### Change update interval globally
+
+It is now possible to change the interval for all bridges by clicking in the "Options" button of the Fast-Hue integration.
+This is equivalent to removing the integration and adding it again with another value, but looks nicer :)
 
 ### Automation example
 

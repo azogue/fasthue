@@ -6,5 +6,6 @@
   ],
   "homeassistant": "0.109.0",
   "iot_class": "Local Polling",
-  "render_readme": true
+  "render_readme": true,
+  "version": "1.2.0"
 }

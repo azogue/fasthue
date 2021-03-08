@@ -1,17 +1,28 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "L'integrazione è già stata configurata"
+  "config": {
+    "abort": {
+      "already_configured": "L'integrazione è già stata configurata"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "name": "Nome base per i sensori di monitoraggio dell'intervallo di polling",
+          "scan_interval": "Intervallo iniziale di aggiornamento"
         },
-        "step": {
-            "user": {
-                "data": {
-                    "name": "Nome base per i sensori di monitoraggio dell'intervallo di polling",
-                    "scan_interval": "Intervallo iniziale di aggiornamento"
-                },
-                "description": "Modifica il comportamento di sensori e telecomandi dell'integrazione hue\n\n* Imposta una frequenza di aggiornamento personalizzata e monitora la frequenza di polling corrente per ogni bridge Hue.\n* Modificala dinamicamente richiamando il servizio `fasthue.set_scan_interval` per ciascun bridge Hue.",
-                "title": "Fast-Hue customizer"
-            }
-        }
+        "description": "Modifica il comportamento di sensori e telecomandi dell'integrazione hue\n\n* Imposta una frequenza di aggiornamento personalizzata e monitora la frequenza di polling corrente per ogni bridge Hue.\n* Modificala dinamicamente richiamando il servizio `fasthue.set_scan_interval` per ciascun bridge Hue.",
+        "title": "Fast-Hue customizer"
+      }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Fast-Hue - Edit",
+        "description": "Modifica il comportamento di sensori e telecomandi dell'integrazione hue\n\n* Imposta una frequenza di aggiornamento personalizzata e monitora la frequenza di polling corrente per ogni bridge Hue.",
+        "data": {
+          "scan_interval": "Intervallo di aggiornamento"
+        }
+      }
+    }
+  }
 }

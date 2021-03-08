@@ -1,17 +1,28 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "La integración ya está configurada"
+  "config": {
+    "abort": {
+      "already_configured": "La integración ya está configurada"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "name": "Nombre base para los sensores de monitorización del intervalo de _polling_",
+          "scan_interval": "Frecuencia de refresco inicial"
         },
-        "step": {
-            "user": {
-                "data": {
-                    "name": "Nombre base para los sensores de monitorización del intervalo de _polling_",
-                    "scan_interval": "Frecuencia de refresco inicial"
-                },
-                "description": "Modifique el comportamiento de la integración Hue para sensores e interruptores.\n\n* Establezca una frecuencia de actualización personalizada y controle la frecuencia de refresco actual para cada puente Hue.\n* Modifíquelo dinámicamente llamando al servicio `fasthue.set_scan_interval` para cada puente Hue",
-                "title": "Fast-Hue customizer"
-            }
-        }
+        "description": "Modifique el comportamiento de la integración Hue para sensores e interruptores.\n\n* Establezca una frecuencia de actualización personalizada y controle la frecuencia de refresco actual para cada puente Hue.\n* Modifíquelo dinámicamente llamando al servicio `fasthue.set_scan_interval` para cada puente Hue",
+        "title": "Fast-Hue customizer"
+      }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "scan_interval": "Frecuencia de refresco (segundos)"
+        },
+        "description": "Modifique el comportamiento de la integración Hue para sensores e interruptores.\n\n* Establezca una frecuencia de actualización personalizada y controle la frecuencia de refresco actual para cada puente Hue.",
+        "title": "Fast-Hue - Edit"
+      }
+    }
+  }
 }

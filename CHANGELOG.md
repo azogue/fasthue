@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.2.0](https://github.com/azogue/fasthue/tree/v1.2.0) (2021-03-08)
+
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.1...v1.2.0)
+
+**Changes:**
+
+- Implement "Options" menu to change update interval globally anytime
+- Modified scan intervals by calling the `fasthue.set_update_interval` service won't persist a HA restart, going back to the global value stored in the integration config (BREAKING CHANGE)
+- Add Norwegian (from @hwikene), update README (from @huubeikens), remove some warning log messages
+
 ## [v1.1.1](https://github.com/azogue/fasthue/tree/v1.1.1) (2020-05-10)
 
 [Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.0...v1.1.1)

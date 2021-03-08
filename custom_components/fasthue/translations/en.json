@@ -1,17 +1,28 @@
 {
-    "config": {
-        "abort": {
-            "already_configured": "Integration is already configured"
+  "config": {
+    "abort": {
+      "already_configured": "Integration is already configured"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "name": "Base name for the polling interval monitor sensors",
+          "scan_interval": "Initial update interval"
         },
-        "step": {
-            "user": {
-                "data": {
-                    "name": "Base name for the polling interval monitor sensors",
-                    "scan_interval": "Initial update interval"
-                },
-                "description": "Modify the hue integration behavior for sensors and remotes.\n\n* Set a custom refresh rate and monitor the current polling rate for each Hue bridge.\n* Modify it dynamically by calling the service `fasthue.set_scan_interval` on each Hue bridge.",
-                "title": "Fast-Hue customizer"
-            }
-        }
+          "description": "Modify the hue integration behavior for sensors and remotes.\n\n* Set a custom refresh rate and monitor the current polling rate for each Hue bridge.\n* Modify it dynamically by calling the service `fasthue.set_scan_interval` on each Hue bridge.",
+        "title": "Fast-Hue customizer"
+      }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        },
+        "description": "Modify the hue integration behavior for sensors and remotes.\n\n* Set a custom refresh rate and monitor the current polling rate for each Hue bridge.",
+        "title": "Fast-Hue - Edit"
+      }
+    }
+  }
 }
