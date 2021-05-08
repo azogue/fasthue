@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.2.1](https://github.com/azogue/fasthue/tree/v1.2.1) (2021-05-09)
+
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.2.0...v1.2.1)
+
+**Changes:**
+
+- Add "iot_class" to integration manifest
+
 ## [v1.2.0](https://github.com/azogue/fasthue/tree/v1.2.0) (2021-03-08)
 
 [Full Changelog](https://github.com/azogue/fasthue/compare/v1.1.1...v1.2.0)
