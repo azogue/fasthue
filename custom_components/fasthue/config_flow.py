@@ -10,7 +10,8 @@ from homeassistant.core import callback
 from .const import CONFIG_SCHEMA, DOMAIN, UNIQUE_ID
 
 
-class ScanIntervalConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+@config_entries.HANDLERS.register(DOMAIN)
+class ScanIntervalConfigFlow(config_entries.ConfigFlow):
     """Handle a config flow for `fasthue` to select the polling interval."""
 
     VERSION = 1
