@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.3.0](https://github.com/azogue/fasthue/tree/v1.3.0) (2021-06-20)
+
+[Full Changelog](https://github.com/azogue/fasthue/compare/v1.2.1...v1.3.0)
+
+**Deprecated library!**. This custom component is not needed anymore, now that the core Hue integration has **local push access** to the Hue bridge (nothing can be _faster_ than that 😆)
+
+If you're seeing this message, and have this integration installed, go to your Integrations menu to remove it, and then remove the folder in your `custom_components` :)
+
 ## [v1.2.1](https://github.com/azogue/fasthue/tree/v1.2.1) (2021-05-09)
 
 [Full Changelog](https://github.com/azogue/fasthue/compare/v1.2.0...v1.2.1)
